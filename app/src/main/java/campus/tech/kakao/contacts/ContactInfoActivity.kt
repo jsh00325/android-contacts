@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 
 class ContactInfoActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,28 +27,21 @@ class ContactInfoActivity : AppCompatActivity() {
 			findViewById<TextView>(R.id.contactName).text = it.name
 			findViewById<TextView>(R.id.contactPhone).text = it.phone
 
-			it.email?.let { email ->
-				findViewById<LinearLayout>(R.id.contact_mail_layout).visibility = View.VISIBLE
-				findViewById<TextView>(R.id.contactMail).text = email
+			findViewById<LinearLayout>(R.id.contact_mail_layout).isVisible = it.email != null
+			findViewById<TextView>(R.id.contactMail).text = it.email
+
+			findViewById<LinearLayout>(R.id.contact_birthday_layout).isVisible = it.birthday != null
+			findViewById<TextView>(R.id.contactBirthday).text = it.birthday
+
+			findViewById<LinearLayout>(R.id.contact_Sex_layout).isVisible = it.isFemale != null
+			findViewById<TextView>(R.id.contactSex).text = when (it.isFemale) {
+				true -> "여성"
+				false -> "남성"
+				else -> "알 수 없음"
 			}
 
-			it.birthday?.let { birthday ->
-				findViewById<LinearLayout>(R.id.contact_birthday_layout).visibility = View.VISIBLE
-				findViewById<TextView>(R.id.contactBirthday).text = birthday
-			}
-
-			it.isFemale?.let { isFemale ->
-				findViewById<LinearLayout>(R.id.contact_Sex_layout).visibility = View.VISIBLE
-				findViewById<TextView>(R.id.contactSex).text = when (isFemale) {
-					true -> "여성"
-					false -> "남성"
-				}
-			}
-
-			it.memo?.let { memo ->
-				findViewById<LinearLayout>(R.id.contact_memo_layout).visibility = View.VISIBLE
-				findViewById<TextView>(R.id.contactMemo).text = memo
-			}
+			findViewById<LinearLayout>(R.id.contact_memo_layout).isVisible = it.memo != null
+			findViewById<TextView>(R.id.contactMemo).text = it.memo
 		}
 	}
 }
