@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
+import android.widget.ImageView
 import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 
 class ContactRegisterActivity : AppCompatActivity() {
 	private lateinit var nameInputView: EditText
@@ -68,11 +69,16 @@ class ContactRegisterActivity : AppCompatActivity() {
 	}
 
 	private fun setMoreInfoVisibility() {
-		findViewById<LinearLayout>(R.id.moreInfoButton).setOnClickListener { moreInfoButton ->
+		findViewById<View>(R.id.moreInfoBackground).setOnClickListener { moreInfoBackground ->
 			findViewById<EditText>(R.id.contactBirthday).visibility = View.VISIBLE
-			findViewById<ConstraintLayout>(R.id.contactGender).visibility = View.VISIBLE
+			findViewById<View>(R.id.contactGenderBackground).visibility = View.VISIBLE
+			findViewById<TextView>(R.id.contactGenderTextView).visibility = View.VISIBLE
+			findViewById<RadioGroup>(R.id.contactGenderRadioGroup).visibility = View.VISIBLE
 			findViewById<EditText>(R.id.contactMemo).visibility = View.VISIBLE
-			moreInfoButton.visibility = View.GONE
+
+			moreInfoBackground.visibility = View.GONE
+			findViewById<TextView>(R.id.moreInfoTextView).visibility = View.GONE
+			findViewById<ImageView>(R.id.moreInfoImageView).visibility = View.GONE
 		}
 	}
 
