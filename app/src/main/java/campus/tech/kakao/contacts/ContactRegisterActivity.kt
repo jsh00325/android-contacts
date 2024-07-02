@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class ContactRegisterActivity : AppCompatActivity() {
 	private lateinit var nameInputView: EditText
@@ -68,7 +69,9 @@ class ContactRegisterActivity : AppCompatActivity() {
 
 	private fun setMoreInfoVisibility() {
 		findViewById<LinearLayout>(R.id.moreInfoButton).setOnClickListener { moreInfoButton ->
-			findViewById<LinearLayout>(R.id.moreInfoLayout).visibility = View.VISIBLE
+			findViewById<EditText>(R.id.contactBirthday).visibility = View.VISIBLE
+			findViewById<ConstraintLayout>(R.id.contactGender).visibility = View.VISIBLE
+			findViewById<EditText>(R.id.contactMemo).visibility = View.VISIBLE
 			moreInfoButton.visibility = View.GONE
 		}
 	}
